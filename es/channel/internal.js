@@ -169,9 +169,9 @@ function onMessage (channel, data) {
 function wrapCallErrorMessage (message) {
   const [{ message: details } = {}] = message.error.data || []
   if (details) {
-    return Error(`${message.error.message}: ${details}`)
+    return new Error(`${message.error.message}: ${details}`)
   }
-  return Error(message.error.message)
+  return new Error(message.error.message)
 }
 
 export function call (channel, method, params) {

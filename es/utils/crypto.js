@@ -443,7 +443,7 @@ export function decryptPubKey (password, encrypted) {
 export function assertedType (data, type, omitError) {
   if (RegExp(`^${type}_.+$`).test(data)) return data.split('_')[1]
   else if (omitError) return false
-  else throw Error(`Data doesn't match expected type ${type}`)
+  else throw new Error(`Data doesn't match expected type ${type}`)
 }
 
 /**
@@ -502,7 +502,7 @@ export function envKeypair (env, force = false) {
   if (keypair.publicKey && keypair.secretKey) {
     return keypair
   } else {
-    if (!force) throw Error('Environment variables WALLET_PRIV and WALLET_PUB need to be set')
+    if (!force) throw new Error('Environment variables WALLET_PRIV and WALLET_PUB need to be set')
   }
 }
 

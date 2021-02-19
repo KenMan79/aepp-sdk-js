@@ -41,7 +41,7 @@ async function resolveOnAccount (onAccount, operation = 'address', data) {
   switch (typeof onAccount) {
     case 'string':
       if (!assertedType(onAccount, 'ak', true)) throw new Error('Invalid account address, check "onAccount" value')
-      if (!this.accounts[onAccount]) throw Error(`Account for ${onAccount} not available`)
+      if (!this.accounts[onAccount]) throw new Error(`Account for ${onAccount} not available`)
       if (operation === 'sign') return this.signWith(onAccount, data)
       if (operation === 'address') return onAccount
       break
@@ -79,7 +79,7 @@ async function address ({ onAccount } = {}) {
  */
 function selectAccount (address) {
   if (!address || !assertedType(address, 'ak', true)) throw new Error('Invalid account address')
-  if (!this.accounts[address]) throw Error(`Account for ${address} not available`)
+  if (!this.accounts[address]) throw new Error(`Account for ${address} not available`)
   this.Selector.address = address
 }
 

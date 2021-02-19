@@ -54,14 +54,14 @@ function lookupType (path, spec, types) {
     if (match !== undefined) {
       return match[1]
     } else {
-      throw Error(`Reference path does not meet specification: ${path}`)
+      throw new Error(`Reference path does not meet specification: ${path}`)
     }
   })()
 
   if (type in types) {
     return types[type]
   } else {
-    throw Error(`Couldn't find definition for ${type}`)
+    throw new Error(`Couldn't find definition for ${type}`)
   }
 }
 
@@ -171,7 +171,7 @@ function conformDispatch (spec) {
   } else if ('type' in spec) {
     return spec.type
   } else {
-    throw Object.assign(Error('Could not determine type'), { spec })
+    throw Object.assign(new Error('Could not determine type'), { spec })
   }
 }
 
@@ -186,7 +186,7 @@ function conformDispatch (spec) {
  */
 function conform (value, spec, types) {
   return (conformTypes[conformDispatch(spec)] || (() => {
-    throw Object.assign(Error('Unsupported type'), { spec })
+    throw Object.assign(new Error('Unsupported type'), { spec })
   }))(value, spec, types)
 }
 
@@ -314,7 +314,7 @@ function assertOne (coll) {
   if (coll.length === 1) {
     return R.head(coll)
   } else {
-    throw Error(`Expected exactly one element in ${coll}`)
+    throw new Error(`Expected exactly one element in ${coll}`)
   }
 }
 
@@ -348,7 +348,7 @@ function resolveRef (ref, swag) {
     }
   }
 
-  throw Error(`Could not resolve reference: ${ref}`)
+  throw new Error(`Could not resolve reference: ${ref}`)
 }
 
 /**
@@ -390,7 +390,7 @@ const operation = (path, method, definition, swag, { config, errorHandler } = {}
           } else if (arguments.length === req.length + 1) {
             return [R.dropLast(1, arguments), R.merge(defaults, R.last(arguments))]
           } else {
-            throw Error(`Function call doesn't conform to ${signature}`)
+            throw new Error(`Function call doesn't conform to ${signature}`)
           }
         })()
 
@@ -418,7 +418,7 @@ const operation = (path, method, definition, swag, { config, errorHandler } = {}
           } else if (method === 'post') {
             return conformed[assertOne(bodyArgs)]
           } else {
-            throw Error(`Unsupported method ${method}`)
+            throw new Error(`Unsupported method ${method}`)
           }
         })())
 

@@ -35,7 +35,7 @@ async function receive ({ data, origin, source }) {
   const { id, method, params, session } = data
 
   function error () {
-    return Promise.reject(Error(`Error: No such method ${method}`))
+    return Promise.reject(new Error(`Error: No such method ${method}`))
   }
 
   R.call(

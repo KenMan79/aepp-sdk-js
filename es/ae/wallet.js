@@ -67,11 +67,11 @@ async function rpc (method, params, session) {
   const { handler, error } = R.find(({ pred }) => pred(method), handlers)
 
   if (handler === undefined) {
-    return Promise.reject(Error(`Unknown method ${method}`))
+    return Promise.reject(new Error(`Unknown method ${method}`))
   } else if (await this[handler](method, params, session)) {
     return this[method].apply(this, params)
   } else {
-    return Promise.reject(Error(error.replace(/{}/, method)))
+    return Promise.reject(new Error(error.replace(/{}/, method)))
   }
 }
 
@@ -99,7 +99,7 @@ async function rpcSign ({ params, session }) {
   if (await this.onAccount('sign', params, session)) {
     return this.signWith(session.address, params[0])
   } else {
-    return Promise.reject(Error('Signing rejected'))
+    return Promise.reject(new Error('Signing rejected'))
   }
 }
 
@@ -107,7 +107,7 @@ async function rpcAddress ({ params, session }) {
   if (await this.onAccount('address', params, session)) {
     return Promise.resolve(session.address)
   } else {
-    return Promise.reject(Error('Address rejected'))
+    return Promise.reject(new Error('Address rejected'))
   }
 }
 

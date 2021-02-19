@@ -43,7 +43,7 @@ async function signWith (address, data) {
   const account = this.accounts[address]
 
   if (account === undefined) {
-    throw Error(`Account for ${address} not available`)
+    throw new Error(`Account for ${address} not available`)
   }
 
   return account.sign(data)
