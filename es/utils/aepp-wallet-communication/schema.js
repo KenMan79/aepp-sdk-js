@@ -70,7 +70,7 @@ export const ERRORS = {
   invalidTransaction: (error = {}) => ({
     code: 2,
     data: error,
-    message: 'Invalid transaction'
+    message: 'Invalid transaction' + JSON.stringify(error)
   }),
   rejectedByUser: (error = {}) => ({
     code: 4,

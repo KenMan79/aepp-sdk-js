@@ -391,7 +391,7 @@ describe('Aepp<->Wallet', function () {
       try {
         await aepp.send(tx)
       } catch (e) {
-        e.message.should.be.equal('Invalid transaction')
+        e.message.should.include('Invalid transaction')
         e.code.should.be.equal(2)
       }
     })
