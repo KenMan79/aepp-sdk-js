@@ -24,7 +24,7 @@ import NodePool from '../node-pool'
 import { assertedType } from '../utils/crypto'
 import { pause } from '../utils/other'
 import { isNameValid, produceNameId } from '../tx/builder/helpers'
-import { NAME_ID_KEY } from '../tx/builder/schema'
+import { DRY_RUN_ACCOUNT, NAME_ID_KEY } from '../tx/builder/schema'
 
 /**
  * ChainNode module
@@ -37,6 +37,9 @@ import { NAME_ID_KEY } from '../tx/builder/schema'
 
 async function sendTransaction (tx, options = {}) {
   const { waitMined, verify } = R.merge(this.Ae.defaults, options)
+
+  console.log('dry run result:', await this.txDryRun([tx], [DRY_RUN_ACCOUNT]).catch(e => e))
+
   // Verify transaction before broadcast
   if (verify || (typeof verify !== 'boolean' && this.verifyTxBeforeSend)) {
     const { validation, tx: txObject, txType } = await this.unpackAndVerify(tx)
