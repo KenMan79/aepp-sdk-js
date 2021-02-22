@@ -21,7 +21,6 @@
   * [@aeternity/aepp-sdk/es/node](api/node.md)
   * [@aeternity/aepp-sdk/es/oracle](api/oracle.md)
   * [@aeternity/aepp-sdk/es/oracle/node](api/oracle/node.md)
-  * [@aeternity/aepp-sdk/es/rpc/client](api/rpc/client.md)
   * [@aeternity/aepp-sdk/es/tx/builder/helpers](api/tx/builder/helpers.md)
   * [@aeternity/aepp-sdk/es/tx/builder](api/tx/builder.md)
   * [@aeternity/aepp-sdk/es/tx/builder/schema](api/tx/builder/schema.md)
