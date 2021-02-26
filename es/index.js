@@ -46,6 +46,7 @@ import RpcWallet from './ae/wallet'
 import Oracle from './ae/oracle'
 import OracleNodeAPI from './oracle/node'
 import Selector from './account/selector'
+import genSwaggerClient from './utils/swagger'
 import Channel from './channel'
 import Universal from './ae/universal'
 import ContractACI from './contract/aci'
@@ -77,6 +78,7 @@ export {
   Oracle,
   OracleNodeAPI,
   Selector,
+  genSwaggerClient,
   Transaction,
   TransactionValidator,
   Tx,
